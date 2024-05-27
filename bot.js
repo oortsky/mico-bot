@@ -2,6 +2,7 @@ import { Client, Events, GatewayIntentBits } from "discord.js";
 import { config } from "dotenv";
 
 import * as ping from "./commands/ping.js";
+import * as quake from "./commands/quake.js";
 
 config();
 
@@ -19,6 +20,9 @@ async function handleInteraction(interaction) {
   switch (interaction.commandName) {
     case "ping":
       await ping.execute(interaction, client);
+      break;
+    case "quake":
+      await quake.execute(interaction, client);
       break;
     default:
       console.log("Not found command");
