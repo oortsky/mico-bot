@@ -1,0 +1,18 @@
+{
+  "name": "mico-bot",
+  "version": "1.0.0",
+  "description": "a multipurposes bot for discord",
+  "main": "bot.js",
+  "scripts": {
+    "start": "nodemon bot.js",
+    "deploy": "nodemon deploy-commands.js"
+  },
+  "type": "module",
+  "author": "oortsky",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.15.2",
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.1"
+  }
+}
