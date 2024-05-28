@@ -1,6 +1,7 @@
 import { Client, Events, GatewayIntentBits } from "discord.js";
 import { config } from "dotenv";
 
+import * as alive from "./alive.js"
 import * as ping from "./commands/ping.js";
 import * as quake from "./commands/quake.js";
 import * as apod from "./commands/apod.js";
