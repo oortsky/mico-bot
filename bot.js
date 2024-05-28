@@ -3,6 +3,7 @@ import { config } from "dotenv";
 
 import * as ping from "./commands/ping.js";
 import * as quake from "./commands/quake.js";
+import * as apod from "./commands/apod.js";
 
 config();
 
@@ -23,6 +24,9 @@ async function handleInteraction(interaction) {
       break;
     case "quake":
       await quake.execute(interaction, client);
+      break;
+    case "apod":
+      await apod.execute(interaction, client);
       break;
     default:
       console.log("Not found command");
