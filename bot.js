@@ -4,6 +4,7 @@ import { config } from "dotenv";
 import * as ping from "./commands/ping.js";
 import * as quake from "./commands/quake.js";
 import * as apod from "./commands/apod.js";
+import * as mico from "./commands/mico.js";
 
 config();
 
@@ -27,6 +28,9 @@ async function handleInteraction(interaction) {
       break;
     case "apod":
       await apod.execute(interaction, client);
+      break;
+    case "mico":
+      await mico.execute(interaction, client);
       break;
     default:
       console.log("Not found command");
