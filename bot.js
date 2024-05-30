@@ -5,6 +5,7 @@ import * as ping from "./commands/ping.js";
 import * as quake from "./commands/quake.js";
 import * as apod from "./commands/apod.js";
 import * as mico from "./commands/mico.js";
+import * as comuline from "./commands/comuline.js";
 
 config();
 
@@ -31,6 +32,9 @@ async function handleInteraction(interaction) {
       break;
     case "mico":
       await mico.execute(interaction, client);
+      break;
+    case "comuline":
+      await comuline.execute(interaction, client);
       break;
     default:
       console.log("Not found command");
