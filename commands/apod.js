@@ -12,6 +12,9 @@ export async function execute(interaction, client) {
   const apiKey = process.env.NASA_API_KEY; // Retrieve NASA API key from environment variables
 
   try {
+    // Tunda balasan interaksi
+    await interaction.deferReply();
+
     const apiCall = await fetch(
       NASA_ENDPOINT + `planetary/apod?thumbs=true&api_key=${apiKey}`
     );
@@ -27,10 +30,16 @@ export async function execute(interaction, client) {
     if (apod.media_type === "video") {
       img_url = apod.thumbnail_url;
     } else {
-      img_url = apod.url;
+      img_url = apod.hdurl;
     }
 
-    await interaction.reply({
+    // Potong teks jika melebihi 1024 karakter
+    const explanation =
+      apod.explanation.length > 1024
+        ? apod.explanation.substring(0, 1021) + "..."
+        : apod.explanation;
+
+    await interaction.editReply({
       embeds: [
         {
           color: 3447003,
@@ -50,7 +59,7 @@ export async function execute(interaction, client) {
             },
             {
               name: "Explanation",
-              value: `${apod.explanation}`,
+              value: explanation, // Gunakan teks yang sudah dipotong
               inline: false
             },
             {
@@ -69,6 +78,7 @@ export async function execute(interaction, client) {
     });
   } catch (error) {
     console.error("Error fetching NASA:", error);
-    await interaction.reply("Failed to show Astronomy Picture of the Day.");
+    // Kirimkan balasan jika terjadi kesalahan
+    await interaction.editReply("Failed to show Astronomy Picture of the Day.");
   }
 }
